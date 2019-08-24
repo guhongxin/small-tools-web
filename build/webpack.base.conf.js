@@ -1,6 +1,9 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const config = require('../config')
 const resolve = (dir) => {
   return path.join(__dirname, '..', dir)
@@ -22,12 +25,45 @@ module.exports = {
     }, {
       test: /\.css$/,
       use: [
-        'style-loader',
+        MiniCssExtractPlugin.loader,
         'css-loader'
+      ]
+    }, {
+      test: /\.less$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+        'less-loader'
+      ]
+    }, {
+      test: /\.(png|jpg|gif)$/,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            name: 'images/[name]_[hash:5].[ext]'
+          }
+        }
       ]
     }]
   },
+  resolve: {
+    alias: {
+      '@': resolve('src')
+    },
+    extensions: ['.js', '.json']
+  },
   plugins: [
+    // new BundleAnalyzerPlugin(),
+    new CopyWebpackPlugin([{ 
+      from: resolve('static'),
+      to:  resolve('dist/static')
+    }]),
+    new MiniCssExtractPlugin({
+  　　filename: "css/[name].[chunkhash:8].css",
+  　　 chunkFilename: "[id].css"
+　　 }),
     new HtmlWebpackPlugin({
       template: resolve('template/index.html'),
       filename: 'index.html',

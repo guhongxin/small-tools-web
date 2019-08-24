@@ -1,6 +1,24 @@
 {
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "absoluteRuntime": false,
+        "corejs": 2,
+        "helpers": true,
+        "regenerator": true,
+        "useESModules": false
+      }
+    ],
+    ["zent",{
+      "moduleMappingFile": "zent/lib/module-mapping.json",
+      "noModuleRewrite": false,
+      "automaticStyleImport": true ,
+      "useRawStyle": false
+    }],
+    "@babel/plugin-proposal-class-properties",
+  ],
   "presets": [
-    "@babel/preset-env",
     "@babel/preset-react"
   ]
 }

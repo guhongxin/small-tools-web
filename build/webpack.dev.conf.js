@@ -10,6 +10,7 @@ const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
 const webpackDevConf = {
+  devtool: config.dev.devtool,
   devServer: {
     contentBase: config.dev.contentBase,
     port: PORT || config.dev.port,
