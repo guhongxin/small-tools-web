@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
+import { Menu, Icon, Button } from 'antd'
+const { SubMenu } = Menu
 class NavBar extends Component {
-  constructor() {
-    super()
-    this.handClick = this.handClick.bind(this)
+  state = {
+    collapsed: false,
   }
-  handClick() {
-    console.log('侧边栏', this)
+  toggleCollapsed = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
   }
   render() {
-    return (<div onClick={this.handClick}>侧边栏</div>);
+    return (<div>表土</div>)
   }
 }
 

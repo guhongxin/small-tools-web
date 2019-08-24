@@ -10,12 +10,12 @@
         "useESModules": false
       }
     ],
-    ["zent",{
-      "moduleMappingFile": "zent/lib/module-mapping.json",
-      "noModuleRewrite": false,
-      "automaticStyleImport": true ,
-      "useRawStyle": false
-    }],
+    [ "import", { 
+      "libraryName": "antd", 
+      "libraryDirectory": "es",
+      "style": true 
+      }
+    ],
     "@babel/plugin-proposal-class-properties",
   ],
   "presets": [

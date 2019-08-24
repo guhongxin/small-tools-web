@@ -26,14 +26,39 @@ module.exports = {
       test: /\.css$/,
       use: [
         MiniCssExtractPlugin.loader,
-        'css-loader'
+        {
+          loader: 'css-loader',
+          options: {
+            modules: {
+              localIdentName: '[name]__[local]--[hash:base64:5]'
+            }
+          }
+        }
       ]
     }, {
       test: /\.less$/,
       use: [
         MiniCssExtractPlugin.loader,
-        'css-loader',
-        'less-loader'
+        {
+          loader: 'css-loader',
+          options: {
+            modules: {
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            }
+          }
+        },
+        {
+          loader: 'less-loader',
+          options: {
+            sourceMap: true,
+            modifyVars: {
+              'primary-color': '#1DA57A',
+              'link-color': '#1DA57A',
+              'border-radius-base': '2px'
+            },
+            javascriptEnabled: true   // 此项不能忘
+          }
+        }
       ]
     }, {
       test: /\.(png|jpg|gif)$/,
@@ -62,7 +87,7 @@ module.exports = {
     }]),
     new MiniCssExtractPlugin({
   　　filename: "css/[name].[chunkhash:8].css",
-  　　 chunkFilename: "[id].css"
+  　　chunkFilename: "css/[id].css"
 　　 }),
     new HtmlWebpackPlugin({
       template: resolve('template/index.html'),
