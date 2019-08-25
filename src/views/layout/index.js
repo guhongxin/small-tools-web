@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { NavBar, AppMain, SideBar} from './components/index.js'
+import { AppMain, SideBar} from './components/index.js'
 import './layout.less'
 class Layout extends Component {
   render() {
