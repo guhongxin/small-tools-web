@@ -39,6 +39,7 @@
     "antd": "^3.22.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-router-dom": "^5.0.1",
     "webpack-bundle-analyzer": "^3.4.1"
   }
 }

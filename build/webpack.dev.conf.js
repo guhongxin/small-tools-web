@@ -21,8 +21,8 @@ const webpackDevConf = {
   plugins: [
     new webpack.DefinePlugin({ //环境变量
       // 定义 NODE_ENV 环境变量为 production，以去除源码中只有开发时才需要的部分
-      'process.env': {
-        NODE_ENV: require('../config/dev.env')
+      'process': {
+        'env': require('../config/dev.env')
       }
     }),
   ]
