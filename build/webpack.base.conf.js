@@ -26,27 +26,13 @@ module.exports = {
       test: /\.css$/,
       use: [
         MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: {
-            modules: {
-              localIdentName: '[name]__[local]--[hash:base64:5]'
-            }
-          }
-        }
+        'css-loader' 
       ]
     }, {
       test: /\.less$/,
       use: [
         MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: {
-            modules: {
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-            }
-          }
-        },
+        'css-loader',
         {
           loader: 'less-loader',
           options: {
@@ -57,6 +43,19 @@ module.exports = {
               'border-radius-base': '2px'
             },
             javascriptEnabled: true   // 此项不能忘
+          }
+        }
+      ]
+    }, {
+      test: /\.(eot|woff2?|ttf|svg)$/,
+      use: [
+        {
+          loader: "url-loader",
+          options: {
+            name: "[name]-[hash:5].min.[ext]",
+            limit: 5000, // fonts file size <= 5KB, use 'base64'; else, output svg file
+            publicPath: "fonts/",
+            outputPath: "fonts/"
           }
         }
       ]
